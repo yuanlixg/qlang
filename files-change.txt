@@ -1,0 +1,14 @@
+dir: qlang/encoding/json
+
+file: qlang/bytes/extra.go
+file: qlang/crypto/md5/extra.go
+file: qlang/crypto/sha1/extra.go
+file: qlang/encoding/json/extra.go
+file: qlang/io/ioutil/safe.go
+file: qlang/net/url/extra.go	# by me
+file: qlang/os/safe.go
+file: qlang/sync/extra.go
+
+dir: qlang/github.com/yuanlixg/cookiejar
+move: qlang/net/http/cookiejar => alternate/net/http/cookiejar
+

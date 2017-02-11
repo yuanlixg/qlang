@@ -1,0 +1,52 @@
+
+在 windows/386 下(为了兼容性):
+
+qexport std
+go list -json net/http > tmp.txt
+打包。
+
+
+在 unix 下解包:
+
+cat tmp.txt | grep -v internal | grep -v "vendor/" | grep -v unsafe | \
+  sed -n -e '/"Deps": \[/,/\],/s/",$/"/p' > tar.list
+
+cd qlang
+echo tar -cf ../qlang.tar `cat ../tar.list` | sh
+cd ..
+
+mkdir -p src/github.com/yuanlixg/qlang/qlang
+tar -xf qlang.tar -C src/github.com/yuanlixg/qlang/qlang
+
+编写 import.sh 自动生成 import.go :
+
+cd src/github.com/yuanlixg/qlang
+sh -e Scripts/import.sh > import.go
+vi import.go
+go fmt import.go
+
+
+全部返工了一回！第一步就错了。
+visualfc可能因为liteide修改了他的gotool，改动也延伸到了qexport。
+改动有不适合qlang的。
+bytes.Buffer全部是非导出字段，直接建立后用的好好的。
+net/http.Request低版本全部导出，高版本有非导出字段。
+为什么都不能直接建立了。
+修改qexport的main.go:
+//if ast.IsExported(v) && !checkStructHasUnexportField(dt.Decl) {
+if ast.IsExported(v) /* && !checkStructHasUnexportField(dt.Decl) */ {
+用master分支的qexport也行，但这样更安全。
+
+将我的劳动成果保存下来:
+tar -cf extra-safe.tar `find qlang -type f -name extra.go` \
+  `find qlang -type f -name safe.go`
+
+
+TODO:
+
+context: golang.org/x/net/context ? (< go1.7)
+真好, qexport自动处理了.
+
+runtime os crypto/md5 encoding/json ... 合并官方包增加的功能
+基本完成.
+

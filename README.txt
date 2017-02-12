@@ -17,3 +17,14 @@ Build:
 Test:
   ./qlang ql/test.ql
 
+
+Windows only (self serve), first:
+  cd %GOPATH%\src\github.com\yuanlixg\qlang
+  go build -v github.com/yuanlixg/qlang
+
+after custom your modules:
+  qlang.exe ql\import.ql > import.go
+
+  cd %GOBIN%
+  go build -v github.com/yuanlixg/qlang
+

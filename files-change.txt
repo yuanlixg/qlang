@@ -12,3 +12,5 @@ file: qlang/sync/extra.go
 dir: qlang/github.com/yuanlixg/cookiejar
 move: qlang/net/http/cookiejar => alternate/net/http/cookiejar
 
+dir: qlang/github.com/yuanlixg/goreq
+

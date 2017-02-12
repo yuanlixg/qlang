@@ -37,6 +37,7 @@ import (
  "github.com/yuanlixg/qlang/qlang/errors"
  "github.com/yuanlixg/qlang/qlang/fmt"
  "github.com/yuanlixg/qlang/qlang/github.com/yuanlixg/cookiejar"
+ "github.com/yuanlixg/qlang/qlang/github.com/yuanlixg/goreq"
  "github.com/yuanlixg/qlang/qlang/hash/adler32"
  "github.com/yuanlixg/qlang/qlang/hash/crc32"
  "github.com/yuanlixg/qlang/qlang/hash/crc64"
@@ -137,6 +138,7 @@ func InitSafe(safeMode bool) {
  qlang.Import("errors", errors.Exports)
  qlang.Import("fmt", fmt.Exports)
  qlang.Import("cookiejar", cookiejar.Exports)
+ qlang.Import("goreq", goreq.Exports)
  qlang.Import("adler32", adler32.Exports)
  qlang.Import("crc32", crc32.Exports)
  qlang.Import("crc64", crc64.Exports)

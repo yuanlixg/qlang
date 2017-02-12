@@ -54,6 +54,7 @@ walkFunc = fn(path, info, err) {
 	if !info.IsDir() && filepath.ext(path) == ".go" {
 		dir, _ = filepath.split(path)
 		dir = dir[len("qlang/"):len(dir)-1]
+		dir = filepath.toSlash(dir)
 		mModule[dir] = false
 	}
 
